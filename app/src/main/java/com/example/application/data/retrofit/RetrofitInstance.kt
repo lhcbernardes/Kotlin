@@ -1,6 +1,6 @@
 package com.example.application.data.retrofit
 
-import com.example.application.data.LoginDataSource
+import com.example.application.data.UserDataSource
 import com.example.application.data.NewsDataSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,7 +27,7 @@ class RetrofitInstance {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(logging)
+            //.addInterceptor(logging)
             .build()
 
         retrofitInstance = Retrofit.Builder()
@@ -38,7 +38,7 @@ class RetrofitInstance {
     }
 
     // Call services
-    public fun userData() = retrofitInstance.create(LoginDataSource::class.java)
+    public fun userData() = retrofitInstance.create(UserDataSource::class.java)
     public fun newsData() = retrofitInstance.create(NewsDataSource::class.java)
 
 }

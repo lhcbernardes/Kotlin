@@ -1,7 +1,3 @@
 package com.example.application.data.model
 
-class RegisterModel {
-    var email: String? = null
-    var password: String? = null
-    var name: String? = null
-}
+data class RegisterModel(val email: String, val password: String, val name: String?)

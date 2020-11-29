@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.application.data.viewmodel.LoginViewModel
 import com.example.application.databinding.ActivityLoginBinding
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 class LoginActivity : AppCompatActivity() {
     var viewmodel: LoginViewModel? = null
@@ -20,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
         val binding : ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.loginViewModel = viewmodel
         binding.lifecycleOwner = this
+
+        observe()
     }
 
     fun observerLogin(): Unit{
@@ -29,6 +32,18 @@ class LoginActivity : AppCompatActivity() {
                     val settings = getSharedPreferences("APPLICATION_PREFERENCES_NAME", Context.MODE_PRIVATE)
                     settings.edit().putString("USER_TOKEN", user.token).apply()
                     startActivity(Intent(this, MainActivity::class.java))
+                }
+            })
+    }
+    fun observe(){
+        observerRegister();
+        observerLogin();
+    }
+    fun observerRegister(){
+        viewmodel?.registerScreen?.observe(this,
+            Observer { registerScreen ->
+                if(registerScreen){
+                    startActivity(Intent(this, RegisterActivity::class.java))
                 }
             })
     }

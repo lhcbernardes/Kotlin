@@ -8,21 +8,24 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.application.data.viewmodel.LoginViewModel
+import com.example.application.data.viewmodel.RegisterViewModel
 import com.example.application.databinding.ActivityLoginBinding
+import com.example.application.databinding.ActivityRegisterBinding
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
-    var viewmodel: LoginViewModel? = null
+    var viewmodel: RegisterViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        viewmodel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        val binding : ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_register);
-        binding.loginViewModel = viewmodel
+        viewmodel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
+        val binding : ActivityRegisterBinding = DataBindingUtil.setContentView(this, R.layout.activity_register);
+        binding.registerViewModel = viewmodel
         binding.lifecycleOwner = this
+        observerRegister();
     }
 
-    fun observerLogin(): Unit{
+    fun observerRegister(): Unit{
         viewmodel?.user?.observe(this,
             Observer { user ->
                 if(user.token != null){

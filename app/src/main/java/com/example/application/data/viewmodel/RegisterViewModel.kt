@@ -1,12 +1,9 @@
 package com.example.application.data.viewmodel
 
 import android.app.Application
-import android.content.Intent
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.application.MainActivity
-import com.example.application.data.LoginRepository
+import com.example.application.data.UserRepository
 import com.example.application.data.model.LoginModel
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
@@ -15,10 +12,10 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     var userEmail: MutableLiveData<String> = MutableLiveData<String>();
     var user: MutableLiveData<LoginModel> = MutableLiveData<LoginModel>();
     var repeatPassword: MutableLiveData<String> = MutableLiveData<String>();
-    var loginRepository: LoginRepository? = null
+    var userRepository: UserRepository? = null
 
     init{
-        this.loginRepository = LoginRepository()
+        this.userRepository = UserRepository()
 
     }
 
@@ -27,8 +24,8 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         }
 
     fun register(){
-        loginRepository?.login(userEmail.value.toString(), password.value.toString())
-        user = loginRepository!!.getMutableUser()
+        userRepository?.register(userEmail.value.toString(), password.value.toString(), userName.value.toString())
+        user = userRepository!!.getMutableUser()
     }
 
 }
