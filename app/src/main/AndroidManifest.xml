@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,6 +15,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".FeedActivity"></activity>
         <activity android:name=".RegisterActivity"></activity>
+
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_login" />

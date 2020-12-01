@@ -2,10 +2,11 @@ package com.example.application.data.retrofit
 
 import com.example.application.data.UserDataSource
 import com.example.application.data.NewsDataSource
+import com.example.application.data.utils.TokenInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class RetrofitInstance {
@@ -14,7 +15,6 @@ class RetrofitInstance {
     var retrofitInstance: Retrofit
 
     init {
-
         // LogInterceptor
         val logging = HttpLoggingInterceptor()
         val logEnabled = true
@@ -27,12 +27,12 @@ class RetrofitInstance {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
-            //.addInterceptor(logging)
+            .addInterceptor(logging)
             .build()
 
         retrofitInstance = Retrofit.Builder()
             .baseUrl(path)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(JacksonConverterFactory.create())
             .client(okHttpClient)
             .build()
     }

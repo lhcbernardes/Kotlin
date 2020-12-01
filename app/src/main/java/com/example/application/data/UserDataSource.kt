@@ -17,7 +17,7 @@ interface UserDataSource {
     @POST("/v1/client/auth/signin")
     fun login(@Body credenciais: Credentials): Call<ResponseBody>
 
-    @Headers("Content-Type: application/json")
+    @Headers("Content-Type: application/json; charset=utf-8")
     @POST("/v1/client/auth/signup")
     fun register(@Body credenciais: RegisterModel): Call<ResponseBody>
 }

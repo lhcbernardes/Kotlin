@@ -31,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
                 if(user.token != null){
                     val settings = getSharedPreferences("APPLICATION_PREFERENCES_NAME", Context.MODE_PRIVATE)
                     settings.edit().putString("USER_TOKEN", user.token).apply()
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, FeedActivity::class.java))
                 }
             })
     }
